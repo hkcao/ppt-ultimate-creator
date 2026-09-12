@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+*.pyc
+.env
+.env.*
+outputs/
+templates/defaults/*
+!templates/defaults/.gitkeep
+templates/custom/*
+!templates/custom/.gitkeep
