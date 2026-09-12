@@ -5,7 +5,7 @@
 - 技能源码：`skills/ppt-ultimate-creator/`，共 6 个文件（不计系统隐藏文件）；中文名为终极ppt生成。
 - 本机安装位置：`~/.codex/skills/ppt-ultimate-creator/`；运行时模板库：`~/.ppt-ultimate-creator/templates/{defaults,custom}/`。
 - 用户已否决首批下载模板。5 份原件、默认库条目、研究副本及预览已删除，仅保留模板根目录；用户自定义内容未改动。仓库仅保留空模板目录，新增模板文件默认不提交。
-- 用户授权创建新的私有 GitHub 仓库并提交；已创建 `https://github.com/hkcao/ppt-ultimate-creator`，GitHub API 核实 `isPrivate=true`、`visibility=PRIVATE`。首批推送待执行。未授权公开发布。
+- 用户授权创建新的私有 GitHub 仓库并提交；已创建 `https://github.com/hkcao/ppt-ultimate-creator`，GitHub API 核实 `isPrivate=true`、`visibility=PRIVATE`。实现提交 `709af63` 已推送至 `main`；本次文档提交记录该发布状态。远端为 origin，后续以 `git status` 与远端分支 SHA 核实最新同步情况。未授权公开发布。
 
 ## 已确认设计
 
