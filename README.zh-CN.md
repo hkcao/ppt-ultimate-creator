@@ -76,3 +76,13 @@ mkdir -p ~/.ppt-ultimate-creator/templates/{defaults,custom}
 Subagent 明确使用 `fork_turns="none"`，只接收页任务包与定点证据；简单相似页合批，纯网络请求用脚本并发，不继承整段聊天。减少重复读取与返回大段代码，但不保证降低总 token。
 
 [外部生图配置](skills/ppt-ultimate-creator/references/image-backend.md) 支持独立设置 endpoint、模型及密钥环境变量。当前适配同步 OpenAI-compatible Images 文生图协议，可用非 GPT 模型；需要 Pillow，不含原生 Gemini、异步 API 或图像编辑适配。已通过模拟协议测试，尚无真实提供商联调。
+
+## 分类样式与布局指南
+
+通用原则保留在设计方法中，类别建议独立维护，执行时按需加载。用户模板优先，混合汇报可按章节选用。
+
+- [学术汇报](skills/ppt-ultimate-creator/references/styles/academic.md)
+- [产品介绍](skills/ppt-ultimate-creator/references/styles/product.md)
+- [方案研讨](skills/ppt-ultimate-creator/references/styles/solution.md)
+- [课程授课](skills/ppt-ultimate-creator/references/styles/course.md)
+- [技术规划洞察](skills/ppt-ultimate-creator/references/styles/technical-planning.md)

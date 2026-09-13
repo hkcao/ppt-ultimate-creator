@@ -77,3 +77,13 @@ Review the outline and HTML together, then approve a representative AI sample. A
 Subagents use `fork_turns="none"` and receive only bounded page tasks and evidence. Batch similar simple pages, use script concurrency for network calls, and avoid repeatedly reading full documents or returning large code blocks. Total token savings are not guaranteed.
 
 [External image configuration](skills/ppt-ultimate-creator/references/image-backend.md) supports a separate endpoint, model and API-key environment variable. The adapter targets synchronous OpenAI-compatible Images text-to-image APIs, including compatible non-GPT models. It requires Pillow; native Gemini, asynchronous APIs and image editing are not implemented. Protocol tests use mocked responses; a live provider has not been tested.
+
+## Category-specific style and layout guides
+
+Common principles remain shared; category guidance is maintained separately and loaded on demand. User templates take priority, and mixed decks can select guidance per section.
+
+- [Academic](skills/ppt-ultimate-creator/references/styles/academic.md)
+- [Product](skills/ppt-ultimate-creator/references/styles/product.md)
+- [Solution review](skills/ppt-ultimate-creator/references/styles/solution.md)
+- [Teaching](skills/ppt-ultimate-creator/references/styles/course.md)
+- [Technical planning](skills/ppt-ultimate-creator/references/styles/technical-planning.md)

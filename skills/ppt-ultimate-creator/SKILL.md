@@ -44,7 +44,7 @@ description: 从用户指定的资料目录、文档、论文、网页或内容�
 
 ### 2. 需求、模板与逐页大纲
 
-读取 [交互与项目记录](references/planning.md)；选择模板时读取 [模板库](references/templates.md)，规划视觉时读取 [设计方法](references/design-methods.md)，不要为每页重复加载。
+读取 [交互与项目记录](references/planning.md)；选择模板时读取 [模板库](references/templates.md)，规划视觉时读取 [设计方法](references/design-methods.md) 的通用原则与类别索引，只加载当前汇报类别对应的样式/布局文档，不要为每页重复加载。
 
 - 模式 A：用户给出每页标题、内容及呈现设想；保留其意图，整理并指出缺口/冲突。
 - 模式 B：用户主要给出资料；仅有关键缺口时先提出需求选项并等待用户回应；明确范围和深度后，再起草整套大纲及逐页表达方案，交给用户修改确认。两种模式可混合。
@@ -100,7 +100,7 @@ description: 从用户指定的资料目录、文档、论文、网页或内容�
 ## 按需参考
 
 - [交互与项目记录](references/planning.md)：阶段 2 或恢复/回退项目时读取。
-- [设计方法](references/design-methods.md)：规划视觉表达和 HTML 布局时读取，包含五类用途的表达建议与来源。
+- [设计方法](references/design-methods.md)：规划视觉表达和 HTML 布局时读取，包含通用原则、来源与独立类别文档索引。
 - [模板库](references/templates.md)：选择、导入或保存模板时读取。
 - [原生对象与对比验收](references/editability-and-qa.md)：设计复杂页、重建和最终检查时读取。
 

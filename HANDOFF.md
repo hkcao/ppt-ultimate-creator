@@ -2,7 +2,7 @@
 
 ## 当前状态 · 2026-09-13
 
-- 技能源码：`skills/ppt-ultimate-creator/`，共 11 个文件（不计系统隐藏文件）；中文名为终极ppt生成。
+- 技能源码：`skills/ppt-ultimate-creator/`，共 16 个文件（不计系统隐藏文件）；中文名为终极ppt生成。
 - 本机安装位置：`~/.codex/skills/ppt-ultimate-creator/`；运行时模板库：`~/.ppt-ultimate-creator/templates/{defaults,custom}/`。
 - 用户已否决首批下载模板。5 份原件、默认库条目、研究副本及预览已删除，仅保留模板根目录；用户自定义内容未改动。仓库仅保留空模板目录，新增模板文件默认不提交。
 - 用户授权创建新的私有 GitHub 仓库并提交；已创建 `https://github.com/hkcao/ppt-ultimate-creator`，GitHub API 核实 `isPrivate=true`、`visibility=PRIVATE`。实现提交 `709af63` 已推送至 `main`；本次文档提交记录该发布状态。远端为 origin，后续以 `git status` 与远端分支 SHA 核实最新同步情况。未授权公开发布。
@@ -58,3 +58,9 @@
 - README 增加中英安装口令、调用样例与 AI 视觉概念展示。示例不是实际 PPTX 渲染或默认模板，不含下载模板原件。
 - 初始澄清合并询问参考模板；用户没有模板或委托推荐后再给建议，不增加独立确认轮次。
 - 本记录随源码更新提交；GitHub API 已核实 visibility=PUBLIC、isPrivate=false；实现提交 96e4149 已推送，本记录随文档提交同步。此前已推送 f3c2369。
+
+## 分类建议独立维护
+
+- references/styles/ 拆分 academic、product、solution、course、technical-planning 五份文档，分别维护样式、内容布局与检查重点。
+- design-methods.md 保留通用原则和类别索引；技能按类别读取，混合场景按章节选用，不加载所有建议或增加确认轮次。
+- README 双语索引同步更新。本轮为文档组织修改，校验相对链接与技能结构，不重新运行无关脚本测试；源码与安装副本同步后提交。上一已推送提交 f8f01bf。
