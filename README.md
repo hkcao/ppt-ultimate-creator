@@ -38,7 +38,7 @@ Then try:
 Use $ppt-ultimate-creator to create an 8-slide presentation from my paper
 for an engineering audience. Focus on the mechanism and experimental
 results. Ask whether I have a reference template before suggesting a style,
-and reuse original experimental figures.
+and preserve experimental values when reusing or redrawing figures.
 ```
 
 Skill discovery and installation locations vary between agents; this repository primarily targets Codex. For manual installation:
@@ -66,13 +66,13 @@ Design-method references and their sources are in [design-methods.md](skills/ppt
 
 ## Execution helpers
 
-Default fonts are Microsoft YaHei for Chinese and Times New Roman for English. Reuse original experimental figures/tables as extracted images or screenshots, disclosing that their contents are not editable. Independent pages can run through subagents with central review and assembly.
+Default fonts are Microsoft YaHei for Chinese and Times New Roman for English. Choose original images, clearer annotations or data-verified redraws for experimental figures/tables. Preserve values exactly and disclose when image contents are not editable. Independent pages can run through subagents with central review and assembly.
 
 The skill includes `scripts/extract_pdf.py --help` for batch PDF extraction (requires PyMuPDF), and `scripts/storyboard.py --help` for basic content HTML from current draft JSON (standard library only). The latter does not implement arbitrary layouts; finish the intended layout before requesting layout approval. Run helper tests with `python -m unittest discover -s tests -v` (requires PyMuPDF). End-to-end speed and parallelization gains have not been benchmarked.
 
 ## Fewer checkpoints and external image generation
 
-Review the outline and HTML together, then approve a representative AI sample. Add one combined clarification only for material requirement gaps. Full-deck generation and reconstruction proceed automatically; detailed confirmation remains available.
+Start with one combined kickoff confirmation, review the outline and HTML together, then approve a representative AI sample. Without an ask tool, send a plain-text question and end the turn to wait for the answer. Full-deck generation and reconstruction proceed automatically; detailed confirmation remains available.
 
 Subagents use `fork_turns="none"` and receive only bounded page tasks and evidence. Batch similar simple pages, use script concurrency for network calls, and avoid repeatedly reading full documents or returning large code blocks. Total token savings are not guaranteed.
 
@@ -91,3 +91,5 @@ Common principles remain shared; category guidance is maintained separately and 
 ## Other agents and native multimodal capabilities
 
 Use the current model or host's available vision, image generation and editing capabilities directly. GPT, OpenAI APIs and the bundled image script are not mandatory. Check each capability separately: image input does not imply image output. External APIs are a fallback for missing capabilities, subject to the host's actual interfaces and rules.
+
+Check mathematical fonts and actual equation rendering separately; do not assemble complex equations from Unicode lookalikes. Follow the step-by-step explanation style of user-provided teaching material: objects, computation, transmission and recovery before general formulas, rather than copying only the final dense diagram.
