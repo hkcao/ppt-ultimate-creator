@@ -6,7 +6,7 @@ A Codex skill for creating editable PowerPoint presentations from directories, d
 
 ## Workflow
 
-1. Confirm sources and resolve missing evidence.
+1. Understand the mechanism and ask the user to clarify scope, depth, audience, and purpose before drafting slides. Ground experimental data and conclusions in the original source.
 2. Clarify audience, purpose, style, and a slide-by-slide outline, either supplied by the user or proposed from the sources.
 3. Review an HTML draft for content and layout.
 4. Generate a high-fidelity AI image sample, then iterate on the full visual deck with the user.
@@ -36,3 +36,9 @@ The repository includes empty matching folders only. No downloaded templates or 
 Run the Codex skill-creator validator on `skills/ppt-ultimate-creator` using Python with PyYAML installed. Structural validation and an outline-stage behavioral simulation passed. A full AI-image-to-editable-PPTX run has not yet been tested.
 
 Design-method references and their sources are in [design-methods.md](skills/ppt-ultimate-creator/references/design-methods.md). Maintenance state is recorded in [HANDOFF.md](HANDOFF.md).
+
+## Execution helpers
+
+Default fonts are Microsoft YaHei for Chinese and Times New Roman for English. Reuse original experimental figures/tables as extracted images or screenshots, disclosing that their contents are not editable. Independent pages can run through subagents with central review and assembly.
+
+The skill includes `scripts/extract_pdf.py --help` for batch PDF extraction (requires PyMuPDF), and `scripts/storyboard.py --help` for basic content HTML from confirmed JSON (standard library only). The latter does not implement arbitrary layouts; finish the intended layout before requesting layout approval. Run helper tests with `python -m unittest discover -s tests -v` (requires PyMuPDF). End-to-end speed and parallelization gains have not been benchmarked.

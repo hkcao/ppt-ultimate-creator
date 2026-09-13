@@ -6,7 +6,7 @@
 
 ## 工作流
 
-1. 确认资料范围，核对来源与证据缺口。
+1. 先理解关键原理，用 ask 类交互澄清范围、深度、受众和目的，再写大纲；实验数据与结论必须来自原文。
 2. 澄清受众、目的、风格和逐页大纲；支持用户提供或根据资料自动提案。
 3. 通过 HTML 草稿确认内容与大布局。
 4. 用 AI 生图制作高保真样张，再生成全套视觉稿并多轮确认。
@@ -36,3 +36,9 @@ mkdir -p ~/.ppt-ultimate-creator/templates/{defaults,custom}
 使用带 PyYAML 的 Python，运行 Codex skill-creator 的 `quick_validate.py` 检查 `skills/ppt-ultimate-creator`。结构校验与大纲阶段模拟行为测试已通过；尚未完成真实 AI 生图至可编辑 PPTX 的全流程测试。
 
 [设计方法](skills/ppt-ultimate-creator/references/design-methods.md) 包含五类用途的表达建议与研究来源；维护状态见 [HANDOFF.md](HANDOFF.md)。
+
+## 执行优化
+
+默认中文微软雅黑、英文 Times New Roman；原文实验图表优先沿用截图或提取图片，明确图内不可编辑。多页可由 subagent 并行准备，由主 agent 统一确认和组装。
+
+技能内 `scripts/extract_pdf.py --help` 提供批量 PDF 提取（依赖 PyMuPDF）；`scripts/storyboard.py --help` 从已确认 JSON 生成基础内容 HTML（仅标准库）。后者不自动实现任意布局，需完善布局后才交用户确认。脚本测试：`python -m unittest discover -s tests -v`（需 PyMuPDF）。并行收益及完整制作速度尚未进行基准测量。
