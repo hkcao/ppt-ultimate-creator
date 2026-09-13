@@ -4,6 +4,14 @@
 
 A Codex skill for creating editable PowerPoint presentations from directories, documents, papers, web pages, or outlines. Display name: **终极ppt生成**.
 
+## Visual examples
+
+![Academic, product and roadmap visual concepts](docs/images/visual-concepts.png)
+
+AI-generated visual concepts illustrating possible directions, not rendered PPTX output or bundled templates. Content, style and editable objects are created and checked for each actual task.
+
+The initial conversation asks whether you have a reference template. If you do, it is used; otherwise the skill suggests directions for academic, product, solution, teaching or technical-planning presentations.
+
 ## Workflow
 
 1. Understand the mechanism and ask the user to clarify scope, depth, audience, and purpose before drafting slides. Ground experimental data and conclusions in the original source.
@@ -17,6 +25,25 @@ Accuracy and semantic editability take priority over exact visual matching. Disc
 
 ## Installation and use
 
+In an agent that supports skill installation (such as Codex), enter:
+
+```text
+Install the skill from https://github.com/hkcao/ppt-ultimate-creator.
+The skill directory is skills/ppt-ultimate-creator.
+```
+
+Then try:
+
+```text
+Use $ppt-ultimate-creator to create an 8-slide presentation from my paper
+for an engineering audience. Focus on the mechanism and experimental
+results. Ask whether I have a reference template before suggesting a style,
+and reuse original experimental figures.
+```
+
+Skill discovery and installation locations vary between agents; this repository primarily targets Codex. For manual installation:
+
+
 Copy `skills/ppt-ultimate-creator` into `${CODEX_HOME:-~/.codex}/skills/` without overwriting an existing customized skill. Invoke `$ppt-ultimate-creator` with your materials and presentation requirements.
 
 The skill supplies workflow instructions, not a standalone rendering engine. Execution requires AI image generation, a PPTX construction library, and an actual PPTX renderer available in the environment.
@@ -29,7 +56,7 @@ The default runtime library is `~/.ppt-ultimate-creator/templates/`, with `defau
 mkdir -p ~/.ppt-ultimate-creator/templates/{defaults,custom}
 ```
 
-The repository includes empty matching folders only. No downloaded templates or preview assets are bundled. Put your templates in the runtime library, or specify another directory when invoking the skill. Files added to the repository template folders are ignored by Git by default.
+The repository includes empty matching folders only. No downloaded templates are bundled. README concept artwork is separate from the template library. Put your templates in the runtime library, or specify another directory when invoking the skill. Files added to the repository template folders are ignored by Git by default.
 
 ## Validation
 
