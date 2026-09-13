@@ -87,3 +87,7 @@ Common principles remain shared; category guidance is maintained separately and 
 - [Solution review](skills/ppt-ultimate-creator/references/styles/solution.md)
 - [Teaching](skills/ppt-ultimate-creator/references/styles/course.md)
 - [Technical planning](skills/ppt-ultimate-creator/references/styles/technical-planning.md)
+
+## Other agents and native multimodal capabilities
+
+Use the current model or host's available vision, image generation and editing capabilities directly. GPT, OpenAI APIs and the bundled image script are not mandatory. Check each capability separately: image input does not imply image output. External APIs are a fallback for missing capabilities, subject to the host's actual interfaces and rules.

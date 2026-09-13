@@ -86,3 +86,7 @@ Subagent 明确使用 `fork_turns="none"`，只接收页任务包与定点证据
 - [方案研讨](skills/ppt-ultimate-creator/references/styles/solution.md)
 - [课程授课](skills/ppt-ultimate-creator/references/styles/course.md)
 - [技术规划洞察](skills/ppt-ultimate-creator/references/styles/technical-planning.md)
+
+## 非 Codex 与原生多模态
+
+在其他 Agent 中，可直接使用当前模型/宿主已有的视觉识别、图像生成或编辑能力，不强制调用 GPT、OpenAI API 或随附生图脚本。识别、生成、编辑分别检查：仅能看图的模型不等于能生图。只有所需能力缺失时才启用外部 API；具体能力仍以运行环境实际提供的接口为准。
