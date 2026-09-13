@@ -8,3 +8,6 @@ templates/defaults/*
 !templates/defaults/.gitkeep
 templates/custom/*
 !templates/custom/.gitkeep
+
+image-api.json
+image-api.local.json

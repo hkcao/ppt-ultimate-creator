@@ -1,6 +1,6 @@
-"""Render approved low-fidelity content: {slides:[{id,title,content:[{text}],layout}]}.
+"""Render low-fidelity draft content: {slides:[{id,title,content:[{text}],layout}]}.
 
-Use confirmed slides.yaml converted to JSON, not independently regenerated text.
+Use the current slides.yaml draft converted to JSON; review outline and HTML together.
 """
 import argparse
 import html

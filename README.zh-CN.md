@@ -9,7 +9,7 @@
 1. 先理解关键原理，用 ask 类交互澄清范围、深度、受众和目的，再写大纲；实验数据与结论必须来自原文。
 2. 澄清受众、目的、风格和逐页大纲；支持用户提供或根据资料自动提案。
 3. 通过 HTML 草稿确认内容与大布局。
-4. 用 AI 生图制作高保真样张，再生成全套视觉稿并多轮确认。
+4. 确认 AI 高保真样张后，自动扩展全套并重建校验；重大偏离再提问。
 5. 以原生文字、图形、连接符、图表、表格重建可编辑 PPT。
 6. 渲染实际 PPTX，与确认图片及内容规格对比并修复。
 
@@ -41,4 +41,12 @@ mkdir -p ~/.ppt-ultimate-creator/templates/{defaults,custom}
 
 默认中文微软雅黑、英文 Times New Roman；原文实验图表优先沿用截图或提取图片，明确图内不可编辑。多页可由 subagent 并行准备，由主 agent 统一确认和组装。
 
-技能内 `scripts/extract_pdf.py --help` 提供批量 PDF 提取（依赖 PyMuPDF）；`scripts/storyboard.py --help` 从已确认 JSON 生成基础内容 HTML（仅标准库）。后者不自动实现任意布局，需完善布局后才交用户确认。脚本测试：`python -m unittest discover -s tests -v`（需 PyMuPDF）。并行收益及完整制作速度尚未进行基准测量。
+技能内 `scripts/extract_pdf.py --help` 提供批量 PDF 提取（依赖 PyMuPDF）；`scripts/storyboard.py --help` 从当前草稿 JSON 生成基础内容 HTML（仅标准库）。后者不自动实现任意布局，需完善布局后才交用户确认。脚本测试：`python -m unittest discover -s tests -v`（需 PyMuPDF）。并行收益及完整制作速度尚未进行基准测量。
+
+## 精简交互与外部生图
+
+默认将大纲和 HTML 合并确认，再确认代表性 AI 样张；需求有关键缺口时先加一次合并澄清。全套生成和重建自动推进，支持按需切回详细确认。
+
+Subagent 明确使用 `fork_turns="none"`，只接收页任务包与定点证据；简单相似页合批，纯网络请求用脚本并发，不继承整段聊天。减少重复读取与返回大段代码，但不保证降低总 token。
+
+[外部生图配置](skills/ppt-ultimate-creator/references/image-backend.md) 支持独立设置 endpoint、模型及密钥环境变量。当前适配同步 OpenAI-compatible Images 文生图协议，可用非 GPT 模型；需要 Pillow，不含原生 Gemini、异步 API 或图像编辑适配。已通过模拟协议测试，尚无真实提供商联调。
