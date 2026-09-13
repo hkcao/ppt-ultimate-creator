@@ -92,4 +92,4 @@ Common principles remain shared; category guidance is maintained separately and 
 
 Use the current model or host's available vision, image generation and editing capabilities directly. GPT, OpenAI APIs and the bundled image script are not mandatory. Check each capability separately: image input does not imply image output. External APIs are a fallback for missing capabilities, subject to the host's actual interfaces and rules.
 
-Check mathematical fonts and actual equation rendering separately; do not assemble complex equations from Unicode lookalikes. Follow the step-by-step explanation style of user-provided teaching material: objects, computation, transmission and recovery before general formulas, rather than copying only the final dense diagram.
+Check mathematical fonts and actual equation rendering separately; do not assemble complex equations from Unicode lookalikes. Academic outline organization, example selection and step-by-step explanation are maintained in the [academic guide](skills/ppt-ultimate-creator/references/styles/academic.md).
