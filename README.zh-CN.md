@@ -100,3 +100,5 @@ Subagent 明确使用 `fork_turns="none"`，只接收页任务包与定点证据
 工作汇报默认使用[华为 2021 年浅色 16:9 模板](https://e.huawei.com/cn/documents/others/4f951fb72e1944288d3aa73bf40d8a8b)，用户指定的模板优先。文件保存到 `~/.ppt-ultimate-creator/templates/defaults/huawei-work-report/template.pptx`；新环境缺失时按[工作汇报指南](skills/ppt-ultimate-creator/references/styles/work-report.md)从官方来源获取。
 
 原件包含品牌与保密标记，需按实际用途处理；图表配色示意页不作为正式内容保留。原件版权归原权利人，仓库只提供来源与使用指导。
+
+工作汇报下设[华为汇报风格](skills/ppt-ultimate-creator/references/styles/work-report/huawei.md)，结合官方模板使用。视觉与交接建议参考 [ppt-forge](https://github.com/zuiho-kai/huawei-style-ppt-skill)，保留其 [MIT 许可及署名](skills/ppt-ultimate-creator/references/licenses/ppt-forge-MIT.txt)，不代表华为官方认证。

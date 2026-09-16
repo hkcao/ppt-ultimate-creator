@@ -67,3 +67,11 @@ slides:
 - 仅批准样张：默认允许扩展、内部校验及重建交付，记录 sample_approved 和 generated_reference，不能写为全套 user_approved；详细模式仍在指定点等待。
 
 保留被替代版本或可恢复副本，避免“最新生成”变成“用户已确认”。用户批准小差异时记录其对应 PPT 版本，不改写原参考图片。
+
+## 逐页布局交接
+
+大纲与 HTML 共用当前 slides.yaml，不另建重复全文稿。复杂页补充页面任务/版式类型、主要焦点、区域相对比例与内容类型、素材 ID、必须原样保留的文字/数据、图例与公式位置。简短比例草图可辅助，不强制另写整套 ASCII 文档，也不增加确认节点。
+
+例如“左侧 35% 为现状与差距，右侧 65% 为趋势图，图下标来源和时间口径”，比“专业大气的双栏”更明确。样式引用 brief 的 design_tokens，页面只写例外。生图器接收该页可见文字清单和自然语言布局约束，不能只给 CSS 期待自动理解内容。
+
+此交接细化参考 [ppt-forge 低保真规范](https://github.com/zuiho-kai/huawei-style-ppt-skill/blob/d4c5124093503f0e58d661b11026340c8a634453/ppt-forge/references/ppt-lofi-authoring.md)，按本技能 HTML 与原生 PPT 流程改编；[许可与署名](licenses/ppt-forge-MIT.txt)。
