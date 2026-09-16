@@ -11,3 +11,6 @@ templates/custom/*
 
 image-api.json
 image-api.local.json
+
+# Local development handoff; never part of the distributed skill
+[Hh][Aa][Nn][Dd][Oo][Ff][Ff].[Mm][Dd]

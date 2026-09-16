@@ -56,13 +56,13 @@ The default runtime library is `~/.ppt-ultimate-creator/templates/`, with `defau
 mkdir -p ~/.ppt-ultimate-creator/templates/{defaults,custom}
 ```
 
-The repository includes empty matching folders only. No downloaded templates are bundled. README concept artwork is separate from the template library. Put your templates in the runtime library, or specify another directory when invoking the skill. Files added to the repository template folders are ignored by Git by default.
+The repository reserves matching template folders; third-party originals are downloaded separately from official sources. README concept artwork is separate from the template library. Put your templates in the runtime library, or specify another directory when invoking the skill. Files added to the repository template folders are ignored by Git by default.
 
 ## Validation
 
 Run the Codex skill-creator validator on `skills/ppt-ultimate-creator` using Python with PyYAML installed. Structural validation and an outline-stage behavioral simulation passed. A full AI-image-to-editable-PPTX run has not yet been tested.
 
-Design-method references and their sources are in [design-methods.md](skills/ppt-ultimate-creator/references/design-methods.md). Maintenance state is recorded in [HANDOFF.md](HANDOFF.md).
+Design-method references and their sources are in [design-methods.md](skills/ppt-ultimate-creator/references/design-methods.md).
 
 ## Execution helpers
 
@@ -95,3 +95,9 @@ Use the current model or host's available vision, image generation and editing c
 Check mathematical fonts and actual equation rendering separately; do not assemble complex equations from Unicode lookalikes. Academic outline organization, example selection and step-by-step explanation are maintained in the [academic guide](skills/ppt-ultimate-creator/references/styles/academic.md).
 
 Mathematical expressions require native editable equation objects, not plain text or images. Academic guidance includes worked examples, parameter-to-value table checks and content hierarchy; layout QA checks both slide and content-container boundaries.
+
+## Default work-report template
+
+Work reports default to the [Huawei light 16:9 template, 2021 edition](https://e.huawei.com/cn/documents/others/4f951fb72e1944288d3aa73bf40d8a8b), unless the user specifies another template. Store it at `~/.ppt-ultimate-creator/templates/defaults/huawei-work-report/template.pptx`. On a new installation, follow the [work-report guide](skills/ppt-ultimate-creator/references/styles/work-report.md) to obtain the original from Huawei.
+
+Handle brand and confidentiality markings according to the actual reporting context; exclude the sample chart-color slide from final content. Copyright remains with the original rights holder. This repository distributes source links and guidance, not the third-party original.

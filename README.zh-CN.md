@@ -55,13 +55,13 @@ AI 生成的视觉概念，展示可能的呈现方向；不是实际 PPTX 渲�
 mkdir -p ~/.ppt-ultimate-creator/templates/{defaults,custom}
 ```
 
-仓库仅预留对应空文件夹，不附带下载模板；README 概念示例与模板库分开。将自己的模板放入上述运行时目录，或在调用时指定其他路径。仓库模板文件夹中的新增文件默认被 Git 忽略。
+仓库预留模板文件夹，不再分发第三方模板原件；工作汇报默认模板按下方官方来源下载到本机库。README 概念示例与模板库分开。将自己的模板放入上述运行时目录，或在调用时指定其他路径。仓库模板文件夹中的新增文件默认被 Git 忽略。
 
 ## 验证与维护
 
 使用带 PyYAML 的 Python，运行 Codex skill-creator 的 `quick_validate.py` 检查 `skills/ppt-ultimate-creator`。结构校验与大纲阶段模拟行为测试已通过；尚未完成真实 AI 生图至可编辑 PPTX 的全流程测试。
 
-[设计方法](skills/ppt-ultimate-creator/references/design-methods.md) 包含五类用途的表达建议与研究来源；维护状态见 [HANDOFF.md](HANDOFF.md)。
+[设计方法](skills/ppt-ultimate-creator/references/design-methods.md) 包含各类用途的表达建议与研究来源。
 
 ## 执行优化
 
@@ -94,3 +94,9 @@ Subagent 明确使用 `fork_turns="none"`，只接收页任务包与定点证据
 公式需独立检查数学字体与实际渲染，避免用 Unicode 字符拼复杂公式。学术汇报的大纲组织、例子选择和分步讲解方法集中维护在[学术指南](skills/ppt-ultimate-creator/references/styles/academic.md)。
 
 数学表达必须使用可编辑的原生公式对象（相当于插入公式），不以普通文本或图片代替。学术指南补充可跟算例子、表格参数映射核对及内容层级要求；验收同时检查画布和内容容器边界。
+
+## 工作汇报默认模板
+
+工作汇报默认使用[华为 2021 年浅色 16:9 模板](https://e.huawei.com/cn/documents/others/4f951fb72e1944288d3aa73bf40d8a8b)，用户指定的模板优先。文件保存到 `~/.ppt-ultimate-creator/templates/defaults/huawei-work-report/template.pptx`；新环境缺失时按[工作汇报指南](skills/ppt-ultimate-creator/references/styles/work-report.md)从官方来源获取。
+
+原件包含品牌与保密标记，需按实际用途处理；图表配色示意页不作为正式内容保留。原件版权归原权利人，仓库只提供来源与使用指导。
