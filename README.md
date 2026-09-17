@@ -66,6 +66,8 @@ Run the Codex skill-creator validator on `skills/ppt-ultimate-creator` using Pyt
 
 Design-method references and their sources are in [design-methods.md](skills/ppt-ultimate-creator/references/design-methods.md).
 
+The skill entrypoint keeps the core constraints and stage order together. Project records, evidence handling, blueprints, templates and validation details are loaded when needed, and only the selected style is read. Full style guides remain available; the shorter entrypoint retains the confirmation, source-verification and native-editability requirements.
+
 ## Execution helpers
 
 Default fonts are Microsoft YaHei for Chinese and Times New Roman for English. Choose original images, clearer annotations or data-verified redraws for experimental figures/tables. Preserve values exactly and disclose when image contents are not editable. Independent pages can run through subagents with central review and assembly.

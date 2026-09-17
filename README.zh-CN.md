@@ -65,6 +65,8 @@ mkdir -p ~/.ppt-ultimate-creator/templates/custom
 
 [设计方法](skills/ppt-ultimate-creator/references/design-methods.md) 包含各类用途的表达建议与研究来源。
 
+技能入口集中维护关键约束和阶段顺序；项目记录、证据执行、低保真蓝图、模板与验收细节按阶段加载，风格文档只读取当前选用类别。完整风格规范仍保留；精简入口不减少确认节点、来源核实或原生编辑要求。
+
 ## 执行优化
 
 默认中文微软雅黑、英文 Times New Roman；实验图表按可读性保留原图、重标注或基于核实数据重绘，数值必须一致；原图明确图内不可编辑。多页可由 subagent 并行准备，由主 agent 统一确认和组装。
