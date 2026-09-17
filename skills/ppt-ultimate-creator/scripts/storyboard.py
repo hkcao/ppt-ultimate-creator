@@ -1,11 +1,19 @@
-"""Render low-fidelity draft content: {slides:[{id,title,content:[{text}],layout}]}.
+"""Write lofi.md from current slide-spec JSON; review outline and blueprint together.
 
-Use the current slides.yaml draft converted to JSON; review outline and HTML together.
+Each slide needs id, title, blueprint (ASCII text), and visual_guidance (text list).
+Optional fields mirror slides.yaml; this script does not invent layouts or render HTML.
 """
 import argparse
-import html
 import json
 from pathlib import Path
+
+
+def block(value, language='text'):
+    text = value if isinstance(value, str) else json.dumps(value, ensure_ascii=False, indent=2)
+    fence = '```'
+    while fence in text:
+        fence += '`'
+    return f'{fence}{language}\n{text}\n{fence}'
 
 
 def main():
@@ -13,27 +21,42 @@ def main():
     parser.add_argument('spec', type=Path)
     parser.add_argument('output', type=Path)
     args = parser.parse_args()
-    slides = json.loads(args.spec.read_text(encoding='utf-8'))['slides']
+    spec = json.loads(args.spec.read_text(encoding='utf-8'))
+    slides = spec['slides']
     if not slides:
         parser.error('slides must not be empty')
+    for slide in slides:
+        blueprint = slide.get('blueprint')
+        guidance = slide.get('visual_guidance')
+        if not isinstance(blueprint, str) or not blueprint.strip():
+            parser.error(f'{slide["id"]}: blueprint must contain the authored ASCII layout')
+        if not isinstance(guidance, list) or not guidance or any(
+                not isinstance(item, str) or not item.strip() for item in guidance):
+            parser.error(f'{slide["id"]}: visual_guidance must be a non-empty list of text')
     if args.output.exists() and any(args.output.iterdir()):
         parser.error('output must be empty; choose a new version directory')
-    escape = lambda value: html.escape(str(value))
-    sections = []
+    sections = ['# 低保真蓝图', '内容与区域布局确认稿；精细视觉在 AI 样张阶段确认。']
+    # Preserve all global requirements without manufacturing defaults or approvals.
+    sections.extend(['## 全局要求', block({k: v for k, v in spec.items() if k != 'slides'}, 'json')])
     for i, slide in enumerate(slides, 1):
-        items = ''.join(f'<li>{escape(item["text"])}</li>' for item in slide.get('content', []))
-        sections.append(f'<section><small>{i} · {escape(slide["id"])}</small><h1>{escape(slide["title"])}</h1>'
-                        f'<ul>{items}</ul><aside>布局意图（待实现）：{escape(slide.get("layout", ""))}</aside></section>')
-    style = '''body{margin:24px;background:#eee;font-family:"Times New Roman","Microsoft YaHei",serif}
-section{box-sizing:border-box;aspect-ratio:16/9;width:min(100%,1100px);margin:24px auto;padding:4%;background:white;overflow:auto}
-h1{font-size:clamp(22px,3vw,40px)}li{font-size:clamp(16px,2vw,28px);margin:1em 0}aside,small{color:#555}
-@media print{section{break-after:page;margin:0;width:100%}}'''
+        sections.extend([f'## P{i}',
+                         '### 逐页内容与依据',
+                         block({k: v for k, v in slide.items()
+                                if k not in ('blueprint', 'visual_guidance')}, 'json'),
+                         '### 区域蓝图', block(slide['blueprint']),
+                         '### 视觉指引', block('\n'.join('- ' + item for item in slide['visual_guidance']))])
+    sections.extend(['## 生图总指引',
+                     '沿用 brief 的共享风格、模板固定项、画幅和密度；逐页一张独立图，'
+                     '输出到 visuals/。内容以当前规格为准，不改写数字、公式和引用。'
+                     '先按技能流程确认蓝图，再生成代表性样张；此文件生成不代表用户已确认。',
+                     '### 逐页生成清单',
+                     block([{'page': i, 'id': slide['id'], 'title': slide['title'],
+                             'presentation': slide.get('presentation'),
+                             'assets': slide.get('assets', [])}
+                            for i, slide in enumerate(slides, 1)], 'json')])
     args.output.mkdir(parents=True, exist_ok=True)
-    (args.output / 'deck.html').write_text('<!doctype html><html lang="zh-CN"><meta charset="utf-8">'
-        '<meta name="viewport" content="width=device-width,initial-scale=1"><title>内容草稿</title><style>'
-        + style + '</style><body><p>内容检查草稿；布局意图尚未实现，不能作为布局确认稿或 AI 视觉稿。</p>'
-        + ''.join(sections) + '</body></html>', encoding='utf-8')
-    print(f'Rendered {len(slides)} slides. Implement and review intended layouts before layout approval.')
+    (args.output / 'lofi.md').write_text('\n\n'.join(sections) + '\n', encoding='utf-8')
+    print(f'Wrote {len(slides)} page blueprints to {args.output / "lofi.md"}; awaiting review.')
 
 
 if __name__ == '__main__':

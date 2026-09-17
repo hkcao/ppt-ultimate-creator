@@ -45,20 +45,44 @@ class Helpers(unittest.TestCase):
         self.assertNotEqual(self.run_script('extract_pdf.py', self.pdf, out, '--pages', '3').returncode, 0)
         self.assertFalse(out.exists())
 
-    def test_html_preserves_and_escapes_content(self):
+    def test_blueprint_preserves_evidence_layout_and_versions(self):
         spec = self.root / 'slides.json'
-        spec.write_text(json.dumps({'slides': [{'id': 's01', 'title': '<script>alert(1)</script>',
-            'content': [{'text': '120 ms → 84 ms'}], 'layout': 'two columns'}]}))
-        out = self.root / 'html'
+        slide = {'id': 's01', 'title': '<script>alert(1)</script>',
+                 'content': [{'text': '120 ms → 84 ms', 'source': 'src01 p.3'}],
+                 'data': {'values': [120, 84], 'unit': 'ms'},
+                 'formula': r'\frac{84}{120}', 'template_layout': 'body-01',
+                 'blueprint': '┌────────┬────────┐\n│左 40%  │右 60%  │\n└────────┴────────┘',
+                 'visual_guidance': ['来源保持可见', 'literal ``` fence']}
+        spec.write_text(json.dumps({'template': {'path': 'assets/base.pptx'}, 'slides': [slide]}))
+        out = self.root / 'preview'
         result = self.run_script('storyboard.py', spec, out)
         self.assertEqual(result.returncode, 0, result.stderr)
-        html = (out / 'deck.html').read_text()
-        self.assertIn('120 ms → 84 ms', html)
-        self.assertNotIn('<script>', html)
-        self.assertIn('&lt;script&gt;', html)
-        before = (out / 'deck.html').read_bytes()
+        draft = (out / 'lofi.md').read_text()
+        self.assertIn(slide['blueprint'], draft)
+        # Parse the content section: exact data, formula and source survive serialization.
+        payload = draft.split('### 逐页内容与依据\n\n```json\n', 1)[1].split('\n```', 1)[0]
+        expected = {k: v for k, v in slide.items() if k not in ('blueprint', 'visual_guidance')}
+        self.assertEqual(json.loads(payload), expected)
+        self.assertIn('assets/base.pptx', draft)
+        self.assertIn('````text\n- 来源保持可见\n- literal ``` fence\n````', draft)
+        self.assertFalse((out / 'deck.html').exists())
+        before = (out / 'lofi.md').read_bytes()
         self.assertNotEqual(self.run_script('storyboard.py', spec, out).returncode, 0)
-        self.assertEqual(before, (out / 'deck.html').read_bytes())
+        self.assertEqual(before, (out / 'lofi.md').read_bytes())
+
+    def test_incomplete_blueprint_does_not_write_or_invent_layout(self):
+        for field in ('blueprint', 'visual_guidance'):
+            with self.subTest(missing=field):
+                slide = {'id': 's01', 'title': '标题', 'blueprint': '│左│右│',
+                         'visual_guidance': ['左 40%，右 60%']}
+                del slide[field]
+                spec = self.root / 'incomplete.json'
+                spec.write_text(json.dumps({'slides': [slide]}))
+                out = self.root / field
+                result = self.run_script('storyboard.py', spec, out)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(field, result.stderr)
+                self.assertFalse(out.exists())
 
 
 if __name__ == '__main__':

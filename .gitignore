@@ -4,10 +4,8 @@ __pycache__/
 .env
 .env.*
 outputs/
-templates/defaults/*
-!templates/defaults/.gitkeep
-templates/custom/*
-!templates/custom/.gitkeep
+# Legacy local template directory; bundled defaults live inside the skill
+/templates/
 
 image-api.json
 image-api.local.json
